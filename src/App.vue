@@ -7,7 +7,7 @@
 </template>
 
 <script>
-
+import {mapState, mapGetters, mapActions} from "vuex";
 
 
 import homePageComponent from './components/Home.vue'
