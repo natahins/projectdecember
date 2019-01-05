@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-<component v-bind:is="currentView"></component>
+    <component :is="component"></component>
   </div>
-
 </template>
 
 <script>
@@ -20,13 +19,11 @@ export default {
   components: {
      homePageComponent, newsPageComponent, contactsPageComponent
   },
-  data: ()=>({
-    currentView: "homePageComponent"
-  }),
-  created() {
-    this.$root.$on('send', (view) => {
-    	this.currentView = view;
-    })}
+  computed: { // геттеры всегда только компутед, и мы тут их перечисляем, так как они используютяс в этом компоненте
+    ...mapGetters({
+      component: 'getCurrentComponent'
+    })
+  }
 }
 
 </script>
