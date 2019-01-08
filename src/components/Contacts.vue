@@ -6,7 +6,7 @@
     <li>+7(495)440-22-11</li>
   </ul>
   <br>
-  <button @click='changeCurrentComponent("homePageComponent")'>Go Home</button>
+  <button @click='changeCompo'>Go Home</button>
 </div>
 </template>
 
@@ -14,7 +14,10 @@
 export default {
   name: 'contactsPageComponent',
   methods: {
-    ...mapActions(['changeCurrentComponent'])
+    changeCompo() {
+      this.$store.dispatch('changeCurrentComponent', "homePageComponent");
+    },
+      ...mapActions(['changeCurrentComponent'])
+    }
   }
-}
 </script>
