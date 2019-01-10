@@ -6,26 +6,32 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: { // данные в хранилище
       currentView: 'homePageComponent', // текущий компонент
-      newsList: [{
-        date: "29.12.2018",
-        title: "Последний рабочий день",
-        info: "Наконец-то закончился рабочий год, и все ушли на каникулы"
-      },{
-        date: "01.01.2019",
-        title: "Новый год",
-        info: "Поздравляем с наступлением Новгого 2019 года"
-      },{
-        date: "02.01.2019",
-        title: "Второй день нового года",
-        info: "Страна продолжает отмечать НГ"
-      },{
-        date: "03.01.2019",
-        title: "Третьй день нового года",
-        info: "Страна продолжает отмечать НГ"
-      },{
-        date: "07.01.2019",
-        title: "Рождество",
-        info: "Наступило Рождество, скоро на работу"}
+      newsList: [
+        {
+          date: "29.12.2018",
+          title: "Последний рабочий день",
+          info: "Наконец-то закончился рабочий год, и все ушли на каникулы"
+        },
+        {
+          date: "01.01.2019",
+          title: "Новый год",
+          info: "Поздравляем с наступлением Новгого 2019 года"
+        },
+        {
+          date: "02.01.2019",
+          title: "Второй день нового года",
+          info: "Страна продолжает отмечать НГ"
+        },
+        {
+          date: "03.01.2019",
+          title: "Третьй день нового года",
+          info: "Страна продолжает отмечать НГ"
+        },
+        {
+          date: "07.01.2019",
+          title: "Рождество",
+          info: "Наступило Рождество, скоро на работу"
+        }
       ]
     },
     getters: {
@@ -48,11 +54,11 @@ export default new Vuex.Store({
       changeCurrentComponent ({ commit }, component) { // вызов мутации, которая поменяет наш компонент
           commit('changeCurrentComponent', component)
       },
-      deletingNews ({commit, delNew}){
-        commit ("deletingNews", delNew)
+      deletingNews ({ commit }, delNew){
+        commit("deletingNews", delNew)
       },
-      addNewNews({commit, addNew}){
-        commit ("addNewNews", addNew)
+      addNewNews({ commit }, addNew){
+        commit("addNewNews", addNew)
       }
     }
 })

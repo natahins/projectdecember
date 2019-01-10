@@ -2,12 +2,15 @@
   <div class="newsPageComponent">
     <h1>News</h1>
     <ul>
-      <li class="newsList" v-for="news in this.$store.getters.getnewsList"
-        v-bind:news="news">
+      <li
+        class="newsList"
+        v-for="(news, key) in getCollection"
+        :key=key
+      >
           Дата: {{news.date}}<br>
           <b>{{news.title}}</b><br>
           {{news.info}} <br>
-          <button v-on:click="deletingNew">Удалить</button>
+          <button @click="deletingNew(key)">Удалить</button>
           <hr>
         </li>
     </ul>
@@ -25,18 +28,30 @@
 <script>
 export default {
   name: 'newsPageComponent',
+  data() {
+    return {
+      newDate: '',
+      newTitle: '',
+      newInfo: ''
+    }
+  },
+  computed: {
+    getCollection() {
+      return this.$store.getters.getnewsList;
+    }
+  },
   methods: {
     changeCompo() {
       this.$store.dispatch('changeCurrentComponent', "homePageComponent");
     },
-    deletingNew(){
-      //this.$store.dispatch("deletingNews", this.$store.getters.getnewsList.indexOf(news))
+    deletingNew(key) {
+      this.$store.dispatch("deletingNews", key)
     },
-    addingNew1(){
-    this.$store.dispatch('addNewNews', {
-      date: this.newDate,
-      title: this.newTitle,
-      info: this.newInfo
+    addingNew1() {
+      this.$store.dispatch('addNewNews', {
+        date: this.newDate,
+        title: this.newTitle,
+        info: this.newInfo
       })
     },
 
