@@ -16,7 +16,7 @@
       <input id="newdate" v-model="newDate" placeholder="Дата в формате дд.мм.гг"><br>
       <input id="newtitle" v-model="newTitle" placeholder="Заголовок"><br>
       <input id="newinfo" v-model="newInfo" placeholder="Текст новости"><br>
-      <button @click="addingNew">Добавить новость</button>
+      <button @click="addingNew1">Добавить новость</button>
     </div>
     <button @click='changeCompo'>Go Home</button>
   </div>
@@ -32,15 +32,22 @@ export default {
     deletingNew(){
       //this.$store.dispatch("deletingNews", this.$store.getters.getnewsList.indexOf(news))
     },
-    addingNew:
-      function () {
+    addingNew1(){
+    this.$store.dispatch('addNewNews', {
+      date: this.newDate,
+      title: this.newTitle,
+      info: this.newInfo
+      })
+    },
+
+      /*function () {
       this.$store.getters.getnewsList.push({
         date: this.newDate,
         title: this.newTitle,
         info: this.newInfo
       })
-    },
-      ...mapActions(['changeCurrentComponent', "deletingNews"])
+    },*/
+      ...mapActions(['changeCurrentComponent', "deletingNews", "addNewNews"])
     }
   }
 </script>

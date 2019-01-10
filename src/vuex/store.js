@@ -50,6 +50,9 @@ export default new Vuex.Store({
       },
       deletingNews ({commit, delNew}){
         commit ("deletingNews", delNew)
+      },
+      addNewNews({commit, addNew}){
+        commit ("addNewNews", addNew)
       }
     }
 })
