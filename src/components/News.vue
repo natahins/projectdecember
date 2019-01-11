@@ -11,14 +11,20 @@
           <b>{{news.title}}</b><br>
           {{news.info}} <br>
           <button @click="deletingNew(key)">Удалить</button>
+          <button @click="edit">Редактировать</button>
+          <div class="editForm" v-if="editSeen">
+              <input class="input-form" v-model="news.date"><br>
+              <input class="input-form" v-model="news.title"><br>
+              <input class="input-form" v-model="news.info"><br>
+           </div>
           <hr>
         </li>
     </ul>
     <br>
     <div class="addnew">
-      <input id="newdate" v-model="newDate" placeholder="Дата в формате дд.мм.гг"><br>
-      <input id="newtitle" v-model="newTitle" placeholder="Заголовок"><br>
-      <input id="newinfo" v-model="newInfo" placeholder="Текст новости"><br>
+      <input class="input-form" v-model="newDate" placeholder="Дата в формате дд.мм.гг"><br>
+      <input class="input-form" v-model="newTitle" placeholder="Заголовок"><br>
+      <input class="input-form" v-model="newInfo" placeholder="Текст новости"><br>
       <button @click="addingNew1">Добавить новость</button>
     </div>
     <button @click='changeCompo'>Go Home</button>
@@ -32,7 +38,8 @@ export default {
     return {
       newDate: '',
       newTitle: '',
-      newInfo: ''
+      newInfo: '',
+      editSeen: false
     }
   },
   computed: {
@@ -54,21 +61,16 @@ export default {
         info: this.newInfo
       })
     },
-
-      /*function () {
-      this.$store.getters.getnewsList.push({
-        date: this.newDate,
-        title: this.newTitle,
-        info: this.newInfo
-      })
-    },*/
+    edit() {
+      this.editSeen = !(this.editSeen);
+    },
       ...mapActions(['changeCurrentComponent', "deletingNews", "addNewNews"])
     }
   }
 </script>
 
 <style>
-.newsList {
-
+.input-form {
+width: 400px;
 }
 </style>
