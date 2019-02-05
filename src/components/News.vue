@@ -11,8 +11,8 @@
           <b>{{news.title}}</b><br>
           {{news.info}} <br>
           <button @click="deletingNew(key)">Удалить</button>
-          <button @click="edit">Редактировать</button>
-          <div class="editForm" v-if="editSeen">
+          <button :data-editkey="key" @click="edit(key)">Редактировать</button>
+          <div :data-formkey="key" class="editForm">
               <input class="input-form" v-model="news.date"><br>
               <input class="input-form" v-model="news.title"><br>
               <input class="input-form" v-model="news.info"><br>
@@ -61,8 +61,13 @@ export default {
         info: this.newInfo
       })
     },
-    edit() {
-      this.editSeen = !(this.editSeen);
+    edit(key) {
+      let elem = document.querySelector(`.editForm[data-formkey="${key}"]`);
+      elem.classList.add('editFormActive');
+      console.warn(key);
+      console.warn(elem);
+
+      // this.editSeen = !(this.editSeen);
     },
       ...mapActions(['changeCurrentComponent', "deletingNews", "addNewNews"])
     }
@@ -71,6 +76,13 @@ export default {
 
 <style>
 .input-form {
-width: 400px;
+  width: 400px;
+}
+
+.editForm {
+  display: none;
+}
+.editFormActive {
+  display: block;
 }
 </style>

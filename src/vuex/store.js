@@ -15,7 +15,7 @@ export default new Vuex.Store({
         {
           date: "01.01.2019",
           title: "Новый год",
-          info: "Поздравляем с наступлением Новгого 2019 года"
+          info: "Поздравляем с наступлением Нового 2019 года"
         },
         {
           date: "02.01.2019",
@@ -32,11 +32,20 @@ export default new Vuex.Store({
           title: "Рождество",
           info: "Наступило Рождество, скоро на работу"
         }
-      ]
+      ],
+      glossaryList: [
+        "абрикос", "ананас", "апельсин", "бамбук", "банан", "баобаб",
+        "ваниль", "василек", "верба","гвоздика", "гербера", "горох"
+      ],
+      glossaryObj: {}
+
     },
     getters: {
       getCurrentComponent: state => state.currentView, // берем из хранилища текущий компонент
-      getnewsList: state => state.newsList
+      getnewsList: state => state.newsList,
+      getGlossaryList: state => state.glossaryList,
+      getGlossaryObj: state => state.glossaryObj
+
     },
     mutations: {
       changeCurrentComponent(state, component) { // меняет компонент
@@ -45,8 +54,11 @@ export default new Vuex.Store({
       addNewNews(state, addingNew) {
         state.newsList.push(addingNew);
       },
-      deletingNews (state, delNew){
+      deletingNews(state, delNew){
         state.newsList.splice(delNew, 1);
+      },
+      addToGlossary (state, newWord){
+        state.glossaryList.push(newWord);
       }
     },
 
@@ -55,10 +67,13 @@ export default new Vuex.Store({
           commit('changeCurrentComponent', component)
       },
       deletingNews ({ commit }, delNew){
-        commit("deletingNews", delNew)
+          commit("deletingNews", delNew)
       },
       addNewNews({ commit }, addNew){
-        commit("addNewNews", addNew)
-      }
+          commit("addNewNews", addNew)
+      },
+      addToGlossary({ commit }, newWord){
+          commit("addToGlossary", newWord)
     }
+  }
 })

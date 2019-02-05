@@ -12,12 +12,13 @@ import {mapState, mapGetters, mapActions} from "vuex";
 import homePageComponent from './components/Home.vue'
 import newsPageComponent from './components/News.vue'
 import contactsPageComponent from './components/Contacts.vue'
+import glossaryPageComponent from './components/Glossary.vue'
 
 
 export default {
   name: 'app',
   components: {
-     homePageComponent, newsPageComponent, contactsPageComponent
+     homePageComponent, newsPageComponent, contactsPageComponent, glossaryPageComponent
   },
   computed: { // геттеры всегда только компутед, и мы тут их перечисляем, так как они используютяс в этом компоненте
     ...mapGetters({
